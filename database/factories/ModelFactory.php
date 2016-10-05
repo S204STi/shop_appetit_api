@@ -13,7 +13,17 @@
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
+      'email' => $faker->safeEmail,
+      'password' => $password ?: $password = bcrypt('secretsquirrel'),
+      'postalCode' => $faker->postcode
     ];
+});
+
+$factory->define(App\Recipe::class, function (Faker\Generator $faker){
+  return [
+    'title' => $faker->company,
+    'img_url' => 'https://www.placecage.com/200/300',
+    'description' => $faker->sentences($nb = 3, $asText = false),
+    'ingredients' => $faker->sentences($nb = 3, $asText = false)
+  ];
 });
