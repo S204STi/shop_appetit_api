@@ -19,6 +19,7 @@ class Recipes extends Migration
           $table->string('img_url')->nullable();
           $table->string('description')->nullable();
           $table->string('ingredients');
+          $table->timestamps();
         });
     }
 

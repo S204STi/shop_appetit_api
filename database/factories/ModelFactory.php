@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -14,16 +16,20 @@
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
       'email' => $faker->safeEmail,
-      'password' => $password ?: $password = bcrypt('secretsquirrel'),
-      'postalCode' => $faker->postcode
+      'password' => $faker->password,
+      // 'password' => $password ?: $password = bcrypt('secretsquirrel'),
+      'postalCode' => $faker->postcode,
+      'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+      'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
     ];
 });
 
 $factory->define(App\Recipe::class, function (Faker\Generator $faker){
   return [
     'title' => $faker->company,
-    'img_url' => 'https://www.placecage.com/200/300',
-    'description' => $faker->sentences($nb = 3, $asText = false),
-    'ingredients' => $faker->sentences($nb = 3, $asText = false)
+    'description' => $faker->sentences($nb = 1, $asText = false),
+    'ingredients' => $faker->sentences($nb = 5, $asText = false),
+    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+    'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
   ];
 });
